@@ -6,6 +6,7 @@ import Contact from './pages/Contact/Contact'
 import Home from './pages/Home/Home'
 import TodolistRFC from './pages/Todolist/TodolistRFC';
 import Todolist from './pages/Todolist/Todolist';
+import ToDoListRedux from './pages/Todolist/ToDoListRedux';
 function App() {
   return (
     <div>
@@ -19,6 +20,7 @@ function App() {
         <Route path='/' element={<Home/>} />
         <Route path='/todolistrcc' element={<Todolist/>} />
         <Route path='/todolistrfc' element={<TodolistRFC/>} />
+        <Route path='/todolistredux' element={<ToDoListRedux/>} />
       </Routes>
   </Router>
     </div>
