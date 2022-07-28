@@ -1,21 +1,26 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Home/Header/Header';
 import About from './pages/About/About'
 import Contact from './pages/Contact/Contact'
 import Home from './pages/Home/Home'
-
+import TodolistRFC from './pages/Todolist/TodolistRFC';
+import Todolist from './pages/Todolist/Todolist';
 function App() {
   return (
     <div>
+    
+      <Router>
       <Header />
       <Routes>
         <Route path='/home' element={<Home />} />
         <Route path='/contact' element={<Contact/>} />
         <Route path='/about' element={<About/>} />
         <Route path='/' element={<Home/>} />
+        <Route path='/todolistrcc' element={<Todolist/>} />
+        <Route path='/todolistrfc' element={<TodolistRFC/>} />
       </Routes>
-  
+  </Router>
     </div>
 
 
