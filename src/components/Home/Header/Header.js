@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import './Header.css'
 export default function Header() {
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -8,13 +9,19 @@ export default function Header() {
             <div className="collapse navbar-collapse" id="collapsibleNavId">
                 <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li className="nav-item">
-                        <Link className="nav-link" to="/home">Home </Link>
+                        <NavLink className="nav-link" activeClassName="activeNavItem" className={({ isActive }) => "nav-link" + (isActive ? " activeNavItem" : "")} activeStyle={{fontWeight:'bold'}}
+                        style={({ isActive }) => ({ fontWeight: isActive ? 'bold' : '' })}
+                        to="/home">Home </NavLink>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/about">About</Link>
+                        <NavLink className="nav-link" activeClassName="activeNavItem" className={({ isActive }) => "nav-link" + (isActive ? " activeNavItem" : "")} activeStyle={{fontWeight:'bold'}} 
+                         style={({ isActive }) => ({ fontWeight: isActive ? 'bold' : '' })}
+                        to="/about">About</NavLink>
                     </li>
                     <li className="nav-item dropdown">
-                    <Link className="nav-link" to="/contact">Contact</Link>
+                    <NavLink className="nav-link" activeClassName="activeNavItem" className={({ isActive }) => "nav-link" + (isActive ? " activeNavItem" : "")} activeStyle={{fontWeight:'bold'}} 
+                     style={({ isActive }) => ({ fontWeight: isActive ? 'bold' : '' })}
+                    to="/contact">Contact</NavLink>
                     </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
