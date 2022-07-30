@@ -46,7 +46,11 @@ export default function BaiTapToDoListSaga(props) {
 
 
     const getTaskList = () => {
-      
+        //Dispatch action saga
+        dispatch({
+            type:'getTaskApiAction',
+            data:'abc'
+        })
     }
 
     const addTask = (e) => {
@@ -54,8 +58,8 @@ export default function BaiTapToDoListSaga(props) {
     }
 
     useEffect(() => {
-     
-
+        //Gọi hàm getTaskList
+        getTaskList();
 
         return () => {
 
@@ -132,7 +136,7 @@ export default function BaiTapToDoListSaga(props) {
                 })
             }}>Dispatch action saga getTaskAPI</button>
             <div className="card__header">
-                <img src='./img/bg.png'/>
+                <img src='./img/bg.png' />
             </div>
             {/* <h2>hello!</h2> */}
             <form className="card__body" onSubmit={addTask}>
