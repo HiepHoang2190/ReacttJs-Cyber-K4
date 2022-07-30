@@ -12,6 +12,7 @@ export class ToDoListService {
             method: 'GET'
         })
     }
+
     addTaskApi = (taskName) => {
         return Axios({
             url: `${DOMAIN}/ToDoList/addTask`,
@@ -19,6 +20,27 @@ export class ToDoListService {
             data: {
                 taskName:taskName
             }
+        })
+    }
+
+    deleteTaskApi = (taskName) => {
+        return Axios({
+            url: `${DOMAIN}/ToDoList/deleteTask?taskName=${taskName}`,
+            method: 'DELETE',
+        })
+    }
+
+    checkDoneTask = (taskName) => {
+        return Axios({
+            url: `${DOMAIN}/ToDoList/doneTask?taskName=${taskName}`,
+            method: 'PUT',
+        })
+    }
+
+    rejectTask = (taskName) => {
+        return Axios({
+            url: `${DOMAIN}/ToDoList/rejectTask?taskName=${taskName}`,
+            method: 'PUT',
         })
     }
 

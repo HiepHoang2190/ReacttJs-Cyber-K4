@@ -8,7 +8,10 @@ export function* rootSaga() {
   yield all([
     //Nghiệp vụ theo dõi các action saga todolist
     ToDoListSaga.theoDoiActionGetTaskApi(),
-    ToDoListSaga.theoDoiActionAddTaskApi()
+    ToDoListSaga.theoDoiActionAddTaskApi(),
+    ToDoListSaga.theoDoiActionDeleteTask(),
+    ToDoListSaga.theoDoiDoneTask(),
+    ToDoListSaga.theoDoiRejectTask()
     //Nghiệp ...
 
   ])
