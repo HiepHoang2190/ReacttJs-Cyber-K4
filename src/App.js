@@ -7,6 +7,7 @@ import Home from './pages/Home/Home'
 import TodolistRFC from './pages/Todolist/TodolistRFC';
 import Todolist from './pages/Todolist/Todolist';
 import ToDoListRedux from './pages/Todolist/ToDoListRedux';
+import ToDoListReduxSaga from './pages/BaiTapToDoListSaga/BaiTapToDoListSaga';
 function App() {
   return (
     <div>
@@ -21,6 +22,7 @@ function App() {
         <Route path='/todolistrcc' element={<Todolist/>} />
         <Route path='/todolistrfc' element={<TodolistRFC/>} />
         <Route path='/todolistredux' element={<ToDoListRedux/>} />
+        <Route path='/todolistreduxsaga' element={<ToDoListReduxSaga/>} />
       </Routes>
   </Router>
     </div>
