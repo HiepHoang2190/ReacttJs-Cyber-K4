@@ -8,12 +8,14 @@ import TodolistRFC from './pages/Todolist/TodolistRFC';
 import Todolist from './pages/Todolist/Todolist';
 import ToDoListRedux from './pages/Todolist/ToDoListRedux';
 import ToDoListReduxSaga from './pages/BaiTapToDoListSaga/BaiTapToDoListSaga';
+import LoadingComponent from './components/GlobalSetting/LoadingComponent/LoadingComponent'
 function App() {
   return (
     <div>
     
       <Router>
       <Header />
+      <LoadingComponent/>
       <Routes>
         <Route path='/home' element={<Home />} />
         <Route path='/contact' element={<Contact/>} />
