@@ -1,35 +1,36 @@
 import React from 'react'
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import Login from '../Login/Login';
+import SlideDown from '../../HOC/Modal/SlideDown';
 import Register from '../Register/Register';
 export default function DemoHOCModal() {
+  const LoginWithSlideDown = () => new SlideDown(Login);
+  const dispatch = useDispatch();
 
-    const dispatch = useDispatch();
-
-    return (
-        <div>
-            {/* Button trigger modal */}
-            <button onClick={() => {
-                dispatch({
-                    type:'OPEN_FORM',
-                    Component: <Login />
-                })
+  return (
+    <div>
+      {/* Button trigger modal */}
+      <button onClick={() => {
+        dispatch({
+          type: 'OPEN_FORM',
+          Component: <Login />
+        })
 
 
-            }} type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
-                Đăng nhập
+      }} type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+        Đăng nhập
             </button>
 
-            <button onClick={() => {
-                dispatch({
-                    type:'OPEN_FORM',
-                    Component:<Register />
-                })
+      <button onClick={() => {
+        dispatch({
+          type: 'OPEN_FORM',
+          Component: <Register />
+        })
 
-            }} type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
-                Đăng ký
+      }} type="button" className="btn btn-primary btn-lg" data-toggle="modal" data-target="#modelId">
+        Đăng ký
             </button>
-
-        </div>
-    )
+            <LoginWithSlideDown />
+    </div>
+  )
 }
