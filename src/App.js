@@ -9,12 +9,15 @@ import Todolist from './pages/Todolist/Todolist';
 import ToDoListRedux from './pages/Todolist/ToDoListRedux';
 import ToDoListReduxSaga from './pages/BaiTapToDoListSaga/BaiTapToDoListSaga';
 import LoadingComponent from './components/GlobalSetting/LoadingComponent/LoadingComponent'
+import DemoHOCModal from './pages/DemoHOCModal/DemoHOCModal';
+import Modal from './HOC/Modal/Modal';
 function App() {
   return (
     <div>
     
       <Router>
       <Header />
+      <Modal/>
       <LoadingComponent/>
       <Routes>
         <Route path='/home' element={<Home />} />
@@ -25,6 +28,7 @@ function App() {
         <Route path='/todolistrfc' element={<TodolistRFC/>} />
         <Route path='/todolistredux' element={<ToDoListRedux/>} />
         <Route path='/todolistreduxsaga' element={<ToDoListReduxSaga/>} />
+        <Route path='/demohocmodal' element={<DemoHOCModal/>} />
       </Routes>
   </Router>
     </div>
