@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {BrowserRouter as Router, Outlet, Route, Routes } from 'react-router-dom';
 import Header from './components/Home/Header/Header';
 import About from './pages/About/About'
 import Contact from './pages/Contact/Contact'
@@ -9,29 +9,16 @@ import Todolist from './pages/Todolist/Todolist';
 import ToDoListRedux from './pages/Todolist/ToDoListRedux';
 import ToDoListReduxSaga from './pages/BaiTapToDoListSaga/BaiTapToDoListSaga';
 import LoadingComponent from './components/GlobalSetting/LoadingComponent/LoadingComponent'
-import DemoHOCModal from './pages/DemoHOCModal/DemoHOCModal';
-import Modal from './HOC/Modal/Modal';
-
+import { UserLoginTemplate } from './templates/HomeTemplate/UserLoginTemplate';
 function App() {
   return (
     <div>
     
-      <Router>
+   
       <Header />
-      <Modal/>
       <LoadingComponent/>
-      <Routes>
-        <Route path='/home' element={<Home />} />
-        <Route path='/contact' element={<Contact/>} />
-        <Route path='/about' element={<About/>} />
-        <Route path='/' element={<Home/>} />
-        <Route path='/todolistrcc' element={<Todolist/>} />
-        <Route path='/todolistrfc' element={<TodolistRFC/>} />
-        <Route path='/todolistredux' element={<ToDoListRedux/>} />
-        <Route path='/todolistreduxsaga' element={<ToDoListReduxSaga/>} />
-        <Route path='/demohocmodal' element={<DemoHOCModal/>} />
-      </Routes>
-  </Router>
+   <Outlet/>
+
     </div>
 
 
