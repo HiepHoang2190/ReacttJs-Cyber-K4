@@ -43,6 +43,11 @@ export default function Header() {
                      style={({ isActive }) => ({ fontWeight: isActive ? 'bold' : '' })}
                     to="/todolistreduxsaga">To do list redux saga</NavLink>
                     </li>
+                    <li className="nav-item dropdown">
+                    <NavLink className="nav-link" activeClassName="activeNavItem" className={({ isActive }) => "nav-link" + (isActive ? " activeNavItem" : "")} activeStyle={{fontWeight:'bold'}} 
+                     style={({ isActive }) => ({ fontWeight: isActive ? 'bold' : '' })}
+                    to="/demohocmodal">HOC Modal</NavLink>
+                    </li>
                 </ul>
                 <form className="form-inline my-2 my-lg-0">
                     <input className="form-control mr-sm-2" type="text" placeholder="Search" />
