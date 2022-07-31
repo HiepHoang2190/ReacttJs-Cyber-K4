@@ -11,6 +11,7 @@ import ToDoListReduxSaga from './pages/BaiTapToDoListSaga/BaiTapToDoListSaga';
 import LoadingComponent from './components/GlobalSetting/LoadingComponent/LoadingComponent'
 import DemoHOCModal from './pages/DemoHOCModal/DemoHOCModal';
 import Modal from './HOC/Modal/Modal';
+
 function App() {
   return (
     <div>
