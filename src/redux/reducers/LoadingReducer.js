@@ -4,7 +4,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-
+  
   case 'DISPLAY_LOADING':
       state.isLoading = true;
       return { ...state }
