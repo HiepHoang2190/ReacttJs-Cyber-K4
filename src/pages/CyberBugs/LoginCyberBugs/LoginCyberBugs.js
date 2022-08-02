@@ -1,31 +1,43 @@
 import React from 'react'
-import { Button, Input,Layout } from 'antd';
+import { Button, Input, Layout } from 'antd';
 import { UserOutlined, LockOutlined, FacebookOutlined, TwitterOutlined } from '@ant-design/icons';
+import { withFormik, Formik } from 'formik'
+import * as Yup from 'yup';
 
 const { Header, Footer, Sider, Content } = Layout;
 
-export default function LoginCyberBugs(props) {
-
+function LoginCyberBugs(props) {
+  // console.log(props)
+  const {
+    values,
+    touched,
+    errors,
+    handleChange,
+    handleBlur,
+    handleSubmit,
+  } = props;
 
   return (
     <Layout>
-      <Sider width={window.innerWidth / 2} style={{ height: window.innerHeight, backgroundImage: 'url(https://picsum.photos/500)' }}>
+      <Sider width={window.innerWidth / 2} style={{ height: window.innerHeight, backgroundImage: 'url(https://picsum.photos/2000)', backgroundSize: '100%' }}>
 
       </Sider>
       <Content>
 
-        <form className="container" style={{ height: window.innerHeight }} >
+        <form onSubmit={handleSubmit} className="container" style={{ height: window.innerHeight }} >
           <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: window.innerHeight }} >
             <h3 className="text-center" style={{ fontWeight: 300, fontSize: 35 }}>Login CyberBugs</h3>
 
             <div className="d-flex mt-3" >
-              <Input style={{ width: '100%', minWidth: 300 }} name="email" size="large" placeholder="email" prefix={<UserOutlined />} />
+              <Input onChange={handleChange} style={{ width: '100%', minWidth: 300 }} name="email" size="large" placeholder="email" prefix={<UserOutlined />} />
             </div>
+            <div className="text-danger">{errors.email}</div>
+            {/* {touched.email ? <div className="text-danger">{errors.email}</div> : ''} */}
             <div className="d-flex mt-3">
-              <Input style={{ width: '100%', minWidth: 300 }} type="password" name="email" size="large" placeholder="password" prefix={<LockOutlined />} />
+              <Input onChange={handleChange} style={{ width: '100%', minWidth: 300 }} type="password" name="password" size="large" placeholder="password" prefix={<LockOutlined />} />
             </div>
-
-            <Button size="large" style={{ minWidth: 300, backgroundColor: 'rgb(102,117,223)', color: '#fff' }} className="mt-5">Login</Button>
+      <div className="text-danger">{errors.password}</div>
+            <Button htmlType="submit" size="large" style={{ minWidth: 300, backgroundColor: 'rgb(102,117,223)', color: '#fff' }} className="mt-5">Login</Button>
 
 
             <div className="social mt-3 d-flex">
@@ -44,3 +56,24 @@ export default function LoginCyberBugs(props) {
 
   )
 }
+
+const LoginCyberBugsWithFormik = withFormik({
+  mapPropsToValues: () => ({
+    email: '',
+    password: ''
+  }),
+  validationSchema: Yup.object().shape({
+    email: Yup.string().required('Email is required!').email('email is invalid!'),
+    password: Yup.string().min(6, 'password must have min 6 characters').max(32, 'password  have max 32 characters')
+
+  }),
+  handleSubmit: (values, { setSubmitting }) => {
+    console.log(values);
+  },
+  displayName: 'Login CyberBugs',
+})(LoginCyberBugs);
+
+
+
+
+export default LoginCyberBugsWithFormik;
