@@ -21,12 +21,13 @@ import LoginCyberBugs from './pages/CyberBugs/LoginCyberBugs/LoginCyberBugs'
 import store from './redux/configStore'
 import { Provider } from 'react-redux';
 
+import {history} from './util/history'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-     
-    <Router>
-      <Routes>
+
+    <Router history={history} >
+      <Routes >
         <Route path="/" element={<App />}>
           <Route path='/home' element={<Home />} />
           <Route path='/contact' element={<Contact />} />
