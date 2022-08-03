@@ -8,6 +8,7 @@ import reduxThunk from 'redux-thunk'
 //middleware saga
 import createMiddleWareSaga from 'redux-saga';
 import { rootSaga } from './sagas/rootSaga';
+import { UserLoginCyberBugsReducer } from './reducers/UserCyberBugsReducer';
 const middleWareSaga = createMiddleWareSaga();
 
 const composedEnhancers = composeWithDevTools()
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     //reducer khai báo tại đây
     ToDoListReducer,
     LoadingReducer,
-    ModalReducer
+    ModalReducer,
+    UserLoginCyberBugsReducer
 })
 
 
