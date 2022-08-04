@@ -16,7 +16,8 @@ import ToDoListRedux from './pages/Todolist/ToDoListRedux';
 import ToDoListReduxSaga from './pages/BaiTapToDoListSaga/BaiTapToDoListSaga';
 import DemoHOCModal from './pages/DemoHOCModal/DemoHOCModal'
 import LoginCyberBugs from './pages/CyberBugs/LoginCyberBugs/LoginCyberBugs'
-
+import IndexCyberBugs from './redux/sagas/Cyberbugs/IndexCyberBugs'
+import CreateProject from  './pages/CyberBugs/CreateProject/CreateProject'
 //setup redux
 import store from './redux/configStore'
 import { Provider } from 'react-redux';
@@ -40,6 +41,8 @@ root.render(
           <Route path='/demohocmodal' element={<DemoHOCModal />} />
         </Route>
         <Route path='/login' element={<LoginCyberBugs />} />
+        <Route path='/cyberbugs' element={<IndexCyberBugs />} />
+        <Route path='/createproject' element={<CreateProject />} />
       </Routes>
     </Router>
 
