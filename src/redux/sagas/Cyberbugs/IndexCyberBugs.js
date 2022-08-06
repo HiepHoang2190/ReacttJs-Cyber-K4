@@ -8,16 +8,10 @@ import ModalCyberBugs from '../../../components/CyberBugs/ModalCyberBugs/ModalCy
 
 export default function IndexCyberBugs() {
   return (
-    <div className="jira">
-      <SidebarCyberbugs />
-      <MenuCyberbugs />
       <div className="main">
         <HeaderMain />
         <InfoMain />
         <ContentMain />
       </div>
-      <ModalCyberBugs />
-    </div>
-
   )
 }

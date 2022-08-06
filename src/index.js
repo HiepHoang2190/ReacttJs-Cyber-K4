@@ -14,36 +14,18 @@ import TodolistRFC from './pages/Todolist/TodolistRFC';
 import Todolist from './pages/Todolist/Todolist';
 import ToDoListRedux from './pages/Todolist/ToDoListRedux';
 import ToDoListReduxSaga from './pages/BaiTapToDoListSaga/BaiTapToDoListSaga';
-import DemoHOCModal from './pages/DemoHOCModal/DemoHOCModal'
-import LoginCyberBugs from './pages/CyberBugs/LoginCyberBugs/LoginCyberBugs'
-import IndexCyberBugs from './redux/sagas/Cyberbugs/IndexCyberBugs'
-import CreateProject from  './pages/CyberBugs/CreateProject/CreateProject'
+
 //setup redux
 import store from './redux/configStore'
 import { Provider } from 'react-redux';
 
-import {history} from './util/history'
+import { history } from './util/history'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
 
     <Router history={history} >
-      <Routes >
-        <Route path="/" element={<App />}>
-          <Route path='/home' element={<Home />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/' element={<Home />} />
-          <Route path='/todolistrcc' element={<Todolist />} />
-          <Route path='/todolistrfc' element={<TodolistRFC />} />
-          <Route path='/todolistredux' element={<ToDoListRedux />} />
-          <Route path='/todolistreduxsaga' element={<ToDoListReduxSaga />} />
-          <Route path='/demohocmodal' element={<DemoHOCModal />} />
-        </Route>
-        <Route path='/login' element={<LoginCyberBugs />} />
-        <Route path='/cyberbugs' element={<IndexCyberBugs />} />
-        <Route path='/createproject' element={<CreateProject />} />
-      </Routes>
+      <App />
     </Router>
 
 
