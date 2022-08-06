@@ -2,7 +2,7 @@ import { all } from "redux-saga/effects";
 import * as ToDoListSaga from './ToDoListSaga'
 import * as Cyberbugs from './Cyberbugs/UserCyberbugsSaga'
 // import {theoDoiActionGetTaskApi} from './ToDoListSaga'
-
+import * as ProjectCategorySaga from './Cyberbugs/ProjectCategorySaga';
 
 export function* rootSaga() {
 
@@ -16,7 +16,8 @@ export function* rootSaga() {
 
     
     //Nghiệp vụ cyberbugs .... ,
-    Cyberbugs.theoDoiSignin()
+    Cyberbugs.theoDoiSignin(),
+    ProjectCategorySaga.theoDoigetAllProjectCategory()
   ])
 
 
