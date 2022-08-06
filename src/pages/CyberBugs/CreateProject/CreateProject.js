@@ -9,7 +9,7 @@ function CreateProject(props) {
     const arrProjectCategory = useSelector(state=>state.ProjectCategoryReducer.arrProjectCategory);
     const dispatch = useDispatch();
 
-    console.log('kết quả',arrProjectCategory)
+    // console.log('kết quả',arrProjectCategory)
     const {
         values,
         touched,
@@ -17,7 +17,8 @@ function CreateProject(props) {
         handleChange,
         handleBlur,
         handleSubmit,
-        
+        setValues,
+        setFieldValue
 
     } = props;
 
@@ -28,14 +29,16 @@ function CreateProject(props) {
     },[]);
 
     const handleEditorChange = (content, editor) => {
-     
+    //  console.log('content',content)
+    // console.log(props)
+    setFieldValue('description', content)
     }
 
 
     return (
         <div className="container m-5">
             <h3>CreateProject</h3>
-            <form className="container" onSubmit={handleSubmit}>
+            <form className="container" onSubmit={handleSubmit} onChange={handleChange}>
                 <div className="form-group">
                     <p>Name</p>
                     <input className="form-control" name="projectName" />
@@ -65,7 +68,7 @@ function CreateProject(props) {
                     />
                 </div>
                 <div className="form-group">
-                    <select name="categoryId" className="form-control">
+                    <select name="categoryId" className="form-control" onChange={handleChange}>
                         {arrProjectCategory.map((item,index)=> {
                             return <option value={item.id} key={index}>{item.projectCategoryName}</option>
                         }) }
@@ -81,22 +84,37 @@ function CreateProject(props) {
 
 
 const createProjectForm = withFormik({
-    mapPropsToValues: () => ({
-
-    }),
+    enableReinitialize: true,// render lại từ redux muốn chạy lại thì thêm dòng này, nếu ko thì categoryId là undefined
+    mapPropsToValues: (props) => {
+        console.log('propvalue', props)
+        return {
+            projectName: '',
+            description: '',
+            categoryId: props.arrProjectCategory[0]?.id
+        }
+    },
     validationSchema: Yup.object().shape({
    
 
     }),
     handleSubmit: (values, { props, setSubmitting }) => {
-
-     
+      
+        console.log(values)
+        // console.log(props)
+        props.dispatch({ 
+            type: 'CREATE_PROJECT_SAGA',
+            newProject: values 
+        })
 
     },
     displayName: 'CreateProjectFormik',
 })(CreateProject);
 
+const mapStateToProps = (state) => {
+    return {
+        arrProjectCategory: state.ProjectCategoryReducer.arrProjectCategory
+    }
+}
 
 
-
-export default connect()(createProjectForm);
+export default connect(mapStateToProps)(createProjectForm);
