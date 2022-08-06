@@ -6,6 +6,7 @@ import SidebarCyberbugs from '../../components/CyberBugs/SidebarCyberbugs';
 
 import '../../index.css';
 import CreateProject from '../../pages/CyberBugs/CreateProject/CreateProject';
+import ProjectManagement from '../../pages/CyberBugs/ProjectManagement/ProjectManagement';
 import IndexCyberBugs from '../../redux/sagas/Cyberbugs/IndexCyberBugs';
 
 
@@ -16,6 +17,7 @@ export const CyberbugsTemplate = (props) => {
   body = (<>
     {cyberRoute === 'cyberbugs' && <IndexCyberBugs />}
     {cyberRoute === 'createproject' && <CreateProject />}
+    {cyberRoute === 'projectmanagement' && <ProjectManagement />}
 
   </>
   )
