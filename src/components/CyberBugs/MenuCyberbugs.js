@@ -20,6 +20,11 @@ export default function MenuCyberbugs() {
                
                 </div>
                 <div>
+                    <i className="fa fa-credit-card mr-1" />
+                    <NavLink className="text-dark"  activeClassName="active" className={({ isActive }) => (isActive ? " font-weight-bold text-primary" : "")} to='/projectmanagement'>Project management</NavLink>
+               
+                </div>
+                <div>
                     <i className="fa fa-cog mr-1" />
                     <NavLink className="text-dark"  activeClassName="active" className={({ isActive }) => (isActive ? " font-weight-bold text-primary" : "")} to='/createproject'>Create project</NavLink>
                 </div>

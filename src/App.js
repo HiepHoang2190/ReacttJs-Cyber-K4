@@ -36,6 +36,7 @@ function App() {
         <Route path='/login' element={<UserLoginTemplate userLoginRoute="login" />} />
         <Route path='/cyberbugs' element={<CyberbugsTemplate cyberRoute="cyberbugs" />} />
         <Route path='/createproject' element={<CyberbugsTemplate cyberRoute="createproject" />} />
+        <Route path='/projectmanagement' element={<CyberbugsTemplate cyberRoute="projectmanagement" />} />
 
         <Route path='*' element={<HomeTemplate homeRoute="pagenotfound" />} />
       </Routes>
