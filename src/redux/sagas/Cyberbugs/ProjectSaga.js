@@ -15,7 +15,7 @@ function* createProjectSaga(action) {
     try {
 
         //Gọi api lấy dữ liệu về
-        const { data, status } = yield call(() => cyberbugsService.createProject(action.newProject));
+        const { data, status } = yield call(() => cyberbugsService.createProjectAuthorization(action.newProject));
 
 
 
