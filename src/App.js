@@ -16,11 +16,13 @@ import IndexCyberBugs from './redux/sagas/Cyberbugs/IndexCyberBugs'
 import CreateProject from './pages/CyberBugs/CreateProject/CreateProject'
 import { HomeTemplate } from './templates/HomeTemplate/HomeTemplate';
 import { CyberbugsTemplate } from './templates/HomeTemplate/CyberbugsTemplate';
+import DrawerCyberBugs from './HOC/CyberbugsHOC/DrawerCyberBugs';
 function App() {
   return (
     <div>
       
       <LoadingComponent />
+      <DrawerCyberBugs/>
       {/* <Outlet/> */}
       <Routes >
         <Route path="/" element={<HomeTemplate homeRoute="home"/>} />
