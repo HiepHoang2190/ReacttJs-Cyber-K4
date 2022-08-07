@@ -11,6 +11,7 @@ import { rootSaga } from './sagas/rootSaga';
 import { UserLoginCyberBugsReducer } from './reducers/UserCyberBugsReducer';
 import { ProjectCategoryReducer } from './reducers/ProjectCategoryReducer';
 import { ProjectCyberBugsReducer } from './reducers/ProjectCyberBugsReducer';
+import { drawerReducer } from './reducers/DrawerCyberbugs';
 const middleWareSaga = createMiddleWareSaga();
 
 const composedEnhancers = composeWithDevTools()
@@ -22,7 +23,8 @@ const rootReducer = combineReducers({
     ModalReducer,
     UserLoginCyberBugsReducer,
     ProjectCategoryReducer,
-    ProjectCyberBugsReducer
+    ProjectCyberBugsReducer,
+    drawerReducer
 })
 
 

@@ -4,6 +4,8 @@ import ReactHtmlParser from "react-html-parser";
 import { FormOutlined, DeleteOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { GET_LIST_PROJECT_SAGA } from "../../../redux/constants/Cyberbugs/Cyberbugs";
+import { OPEN_FORM_EDIT_PROJECT } from "../../../redux/constants/Cyberbugs/Cyberbugs"
+import FormEditProject from '../../../components/Forms/FormEditProject/FormEditProject';
 const data = [
   {
     "id": 1,
@@ -243,7 +245,15 @@ export default function ProjectManagement(props) {
       key: 'x',
       render: (text, record, index) => {
         return <div>
-          <button className="btn mr-2 btn-primary">
+          <button className="btn mr-2 btn-primary" onClick={() => {
+            const action = {
+              type: OPEN_FORM_EDIT_PROJECT,
+              Component: <FormEditProject/>,
+            }
+
+            //dispatch lên reducer nội dung drawer
+            dispatch(action);
+          }}>
             <FormOutlined style={{ fontSize: 17 }} />
           </button>
           <button className="btn btn-danger">
