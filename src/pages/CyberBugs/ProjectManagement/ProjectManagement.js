@@ -177,14 +177,23 @@ export default function ProjectManagement(props) {
       title: 'id',
       dataIndex: 'id',
       key: 'id',
-
-
+      sorter: (item2, item1) => {
+        return item2.id - item1.id;
+      },
+      sortDirections: ['descend'],
     },
     {
       title: 'projectName',
       dataIndex: 'projectName',
       key: 'projectName',
-
+      sorter: (item2, item1) => {
+        let projectName1 = item1.projectName?.trim().toLowerCase();
+        let projectName2 = item2.projectName?.trim().toLowerCase();
+        if (projectName2 < projectName1) {
+          return -1;
+        }
+        return 1;
+      },
     },
     // {
     //   title: 'description',
@@ -201,7 +210,15 @@ export default function ProjectManagement(props) {
     {
       title: 'category',
       dataIndex: 'categoryName',
-      key: 'categoryName'
+      key: 'categoryName',
+      sorter: (item2, item1) => {
+        let categoryName1 = item1.categoryName?.trim().toLowerCase();
+        let categoryName2 = item2.categoryName?.trim().toLowerCase();
+        if (categoryName2 < categoryName1) {
+          return -1;
+        }
+        return 1;
+      },
     },
     {
       title: 'creator',
@@ -210,7 +227,15 @@ export default function ProjectManagement(props) {
       render: (text, record, index) => {
         // console.log('record', record)
         return <Tag color="green">{record.creator?.name}</Tag>
-      }
+      },
+      sorter: (item2, item1) => {
+        let creator1 = item1.creator?.name.trim().toLowerCase();
+        let creator2 = item2.creator?.name.trim().toLowerCase();
+        if (creator2 < creator1) {
+          return -1;
+        }
+        return 1;
+      },
     },
     {
       title: 'Action',
