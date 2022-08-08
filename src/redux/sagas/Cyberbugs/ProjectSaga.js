@@ -2,8 +2,8 @@ import { call, delay, put, takeLatest } from "redux-saga/effects";
 import { cyberbugsService } from "../../../services/CyberbugsService";
 import { STATUS_CODE } from "../../../util/constants/settingSystem";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../../constants/LoadingConst";
-import { GET_LIST_PROJECT_SAGA, GET_LIST_PROJECT } from "../../constants/Cyberbugs/Cyberbugs";
-import {history} from '../../../util/history';
+import { GET_LIST_PROJECT_SAGA, GET_LIST_PROJECT, UPDATE_PROJECT_SAGA,CLOSE_DRAWER } from "../../constants/Cyberbugs/Cyberbugs";
+import { history } from '../../../util/history';
 function* createProjectSaga(action) {
 
     console.log('actionCreateProject', action)
@@ -23,7 +23,7 @@ function* createProjectSaga(action) {
         //Gọi api thành công thì dispatch lên reducer thông qua put
         if (status === STATUS_CODE.SUCCESS) {
             console.log(data)
-            
+
             history.push('/projectmanagement');
         }
 
@@ -53,7 +53,7 @@ function* getListProjectSaga(action) {
 
     try {
         const { data, status } = yield call(() => cyberbugsService.getListProject());
-       
+
         //Sau khi lấy dữ liệu từ api về thành công
         if (status === STATUS_CODE.SUCCESS) {
             yield put({
@@ -70,4 +70,45 @@ function* getListProjectSaga(action) {
 
 export function* theoDoiGetListProjectSaga() {
     yield takeLatest(GET_LIST_PROJECT_SAGA, getListProjectSaga);
+}
+
+//UpdateProject
+function* updateProjectSaga(action) {
+    // console.log('action123',action);
+    // return;
+    //HIỂN THỊ LOADING
+    yield put({
+        type: DISPLAY_LOADING
+    })
+    yield delay(500);
+
+    try {
+
+
+        const { data, status } = yield call(() => cyberbugsService.updateProject(action.prjectUpdate));
+        //Gọi api thành công thì dispatch lên reducer thông qua put
+        if (status === STATUS_CODE.SUCCESS) {
+            console.log(data)
+
+            history.push('/projectmanagement');
+        }
+        yield put({
+            type:GET_LIST_PROJECT_SAGA
+        })
+        yield call(getListProjectSaga);
+        yield put({
+            type: CLOSE_DRAWER
+        })
+    } catch (err) {
+        console.log(err);
+    }
+
+    yield put({
+        type: HIDE_LOADING
+    })
+}
+
+
+export function* theoDoiUpdateProjectSaga() {
+    yield takeLatest(UPDATE_PROJECT_SAGA, updateProjectSaga);
 }

@@ -1,7 +1,7 @@
 import { Editor } from '@tinymce/tinymce-react'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { SET_SUBMIT_EDIT_PROJECT, GET_ALL_PROJECT_CATEGORY_SAGA } from '../../../redux/constants/Cyberbugs/Cyberbugs'
+import { SET_SUBMIT_EDIT_PROJECT, GET_ALL_PROJECT_CATEGORY_SAGA,UPDATE_PROJECT_SAGA } from '../../../redux/constants/Cyberbugs/Cyberbugs'
 import { withFormik } from 'formik'
 import { connect } from 'react-redux'
 import * as Yup from 'yup';
@@ -46,6 +46,7 @@ function FormEditProject(props) {
 
 
   const handleEditorChange = (content, editor) => {
+    // console.log(content)
     setFieldValue('description', content)
   }
 
@@ -85,7 +86,8 @@ function FormEditProject(props) {
             <Editor
 
               name="description123"
-              initialValue={values.categoryId}
+              // initialValue={values.description}
+              value={values.description}
               init={{
                 selector: 'textarea#myTextArea',
 
@@ -128,7 +130,17 @@ const EditProjectForm = withFormik({
   }),
   handleSubmit: (values, { props, setSubmitting }) => {
 
-    console.log('values', values);
+    // console.log('values', values);
+    //Khi người dùng bấm submit => đưa dữ liệu về backedn thông qua api
+    // const action = {
+    //     type:UPDATE_PROJECT_SAGA,
+    //     prjectUpdate:values
+    // }
+    //Gọi saga
+    props.dispatch({
+      type: UPDATE_PROJECT_SAGA,
+      prjectUpdate: values
+    })
 
 
   },
