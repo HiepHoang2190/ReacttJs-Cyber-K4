@@ -3,9 +3,10 @@ import { Table, Tag, Space, Button } from 'antd';
 import ReactHtmlParser from "react-html-parser";
 import { FormOutlined, DeleteOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
-import { GET_LIST_PROJECT_SAGA } from "../../../redux/constants/Cyberbugs/Cyberbugs";
-import { OPEN_FORM_EDIT_PROJECT,EDIT_PROJECT } from "../../../redux/constants/Cyberbugs/Cyberbugs"
+import { DELETE_PROJECT_SAGA, GET_LIST_PROJECT_SAGA } from "../../../redux/constants/Cyberbugs/Cyberbugs";
+import { OPEN_FORM_EDIT_PROJECT, EDIT_PROJECT } from "../../../redux/constants/Cyberbugs/Cyberbugs"
 import FormEditProject from '../../../components/Forms/FormEditProject/FormEditProject';
+import { Popconfirm, message } from 'antd';
 const data = [
   {
     "id": 1,
@@ -248,23 +249,33 @@ export default function ProjectManagement(props) {
           <button className="btn mr-2 btn-primary" onClick={() => {
             const action = {
               type: OPEN_FORM_EDIT_PROJECT,
-              Component: <FormEditProject/>,
+              Component: <FormEditProject />,
             }
 
             //dispatch lên reducer nội dung drawer
             dispatch(action);
             // dispatch dữ liệu dòng hiện tại lên reducer
             const actionEditProject = {
-              type:EDIT_PROJECT,
+              type: EDIT_PROJECT,
               projectEditModel: record
             }
             dispatch(actionEditProject)
           }}>
             <FormOutlined style={{ fontSize: 17 }} />
           </button>
-          <button className="btn btn-danger">
-            <DeleteOutlined style={{ fontSize: 17 }} />
-          </button>
+          <Popconfirm
+            title="Are you sure to delete this project?"
+            onConfirm={() => {
+              dispatch({ type: DELETE_PROJECT_SAGA, idProject: record.id })
+            }}
+
+            okText="Yes"
+            cancelText="No"
+          >
+            <button className="btn btn-danger">
+              <DeleteOutlined style={{ fontSize: 17 }} />
+            </button>
+          </Popconfirm>,
         </div>
       },
     }
