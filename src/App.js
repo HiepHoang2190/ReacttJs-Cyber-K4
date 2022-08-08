@@ -17,12 +17,14 @@ import CreateProject from './pages/CyberBugs/CreateProject/CreateProject'
 import { HomeTemplate } from './templates/HomeTemplate/HomeTemplate';
 import { CyberbugsTemplate } from './templates/HomeTemplate/CyberbugsTemplate';
 import DrawerCyberBugs from './HOC/CyberbugsHOC/DrawerCyberBugs';
+import { notifiFunction } from './util/Notification/notificationCyberbugs';
 function App() {
   return (
     <div>
       
       <LoadingComponent />
       <DrawerCyberBugs/>
+      <notifiFunction/>
       {/* <Outlet/> */}
       <Routes >
         <Route path="/" element={<HomeTemplate homeRoute="home"/>} />
