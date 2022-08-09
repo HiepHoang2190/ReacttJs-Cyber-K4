@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Table, Tag, Space, Button } from 'antd';
+import { Table, Tag, Space, Button, Avatar, Popconfirm, message,Popover, AutoComplete } from 'antd';
 import ReactHtmlParser from "react-html-parser";
 import { FormOutlined, DeleteOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
 import { DELETE_PROJECT_SAGA, GET_LIST_PROJECT_SAGA } from "../../../redux/constants/Cyberbugs/Cyberbugs";
 import { OPEN_FORM_EDIT_PROJECT, EDIT_PROJECT } from "../../../redux/constants/Cyberbugs/Cyberbugs"
 import FormEditProject from '../../../components/Forms/FormEditProject/FormEditProject';
-import { Popconfirm, message } from 'antd';
+
 const data = [
   {
     "id": 1,
@@ -239,6 +239,27 @@ export default function ProjectManagement(props) {
         }
         return 1;
       },
+
+    },
+    {
+      title: 'members',
+      key: 'members',
+      render: (text, record, index) => {
+        return <div>
+          {record.members?.slice(0, 3).map((member, index) => {
+            return <Avatar key={index} src={member.avatar} />
+          })}
+
+          {record.members?.length > 3 ? <Avatar>...</Avatar> : ''}
+
+          <Popover placement="rightTop" title={"Add user"} content={() => {
+            return <AutoComplete style={{ width: '100%' }} />
+          }} trigger="click">
+            <Button style={{ borderRadius: '50%' }}>+</Button>
+          </Popover>
+        </div>
+      }
+
     },
     {
       title: 'Action',
