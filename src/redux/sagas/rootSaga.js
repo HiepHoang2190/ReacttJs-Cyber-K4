@@ -4,7 +4,7 @@ import * as Cyberbugs from './Cyberbugs/UserCyberbugsSaga'
 // import {theoDoiActionGetTaskApi} from './ToDoListSaga'
 import * as ProjectCategorySaga from './Cyberbugs/ProjectCategorySaga';
 import * as ProjectSaga from './Cyberbugs/ProjectSaga';
-
+import * as UserCyberbugsSaga from './Cyberbugs/UserCyberbugsSaga'
 export function* rootSaga() {
 
   yield all([
@@ -23,6 +23,7 @@ export function* rootSaga() {
     ProjectSaga.theoDoiGetListProjectSaga(),
     ProjectSaga.theoDoiUpdateProjectSaga(),
     ProjectSaga.theoDoiDeleteProject(),
+    UserCyberbugsSaga.theoDoiGetUser()
   ])
 
 
