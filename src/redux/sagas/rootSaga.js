@@ -24,7 +24,8 @@ export function* rootSaga() {
     ProjectSaga.theoDoiUpdateProjectSaga(),
     ProjectSaga.theoDoiDeleteProject(),
     UserCyberbugsSaga.theoDoiGetUser(),
-    UserCyberbugsSaga.theoDoiAddUserProject()
+    UserCyberbugsSaga.theoDoiAddUserProject(),
+    UserCyberbugsSaga.theoDoiRemoveUserProject()
   ])
 
 

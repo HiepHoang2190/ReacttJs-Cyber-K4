@@ -2,14 +2,15 @@ import { baseService } from "./baseService";
 
 export class ProjectService extends baseService {
 
-    constructor(){
+    constructor() {
         super();
     }
 
     deleteProject = (id) => {
-        
-       return this.delete(`/Project/deleteProject?projectId=${id}`);
+
+        return this.delete(`/Project/deleteProject?projectId=${id}`);
     }
+
 
 
 }
