@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import { call, delay, fork, take, takeEvery, takeLatest, put } from 'redux-saga/effects';
 import { cyberbugsService } from '../../../services/CyberbugsService';
-import { USER_SIGNIN_API, USLOGIN, GET_USER_API, GET_USER_SEARCH } from '../../constants/Cyberbugs/Cyberbugs';
+import { USER_SIGNIN_API, USLOGIN, GET_USER_API, GET_USER_SEARCH, ADD_USER_PROJECT_API, GET_LIST_PROJECT_SAGA } from '../../constants/Cyberbugs/Cyberbugs';
 import { DISPLAY_LOADING, HIDE_LOADING } from '../../constants/LoadingConst';
 import { TOKEN, USER_LOGIN } from '../../../util/constants/settingSystem'
 import { push } from 'react-router-redux';
@@ -73,5 +73,28 @@ export function* theoDoiGetUser() {
     yield takeLatest(GET_USER_API, getUserSaga);
 }
 
+
+// Add user project
+
+function* addUserProjectSaga(action) {
+
+
+    try {
+        const { data, status } = yield call(() => userService.assignUserProject(action.userProject));
+
+        yield put({
+            type: GET_LIST_PROJECT_SAGA
+        })
+
+    } catch (err) {
+        console.log(err.response.data)
+    }
+}
+
+
+
+export function* theoDoiAddUserProject() {
+    yield takeLatest(ADD_USER_PROJECT_API, addUserProjectSaga);
+}
 
 

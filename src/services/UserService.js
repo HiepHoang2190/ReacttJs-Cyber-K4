@@ -2,15 +2,18 @@ import { baseService } from "./baseService";
 
 export class UserService extends baseService {
 
-    constructor(){
-        super();
-    }
+  constructor() {
+    super();
+  }
 
-    getUser = (keyWord) => {
-        
-       return this.get(`/Users/getUser?kewword=${keyWord}`);
-    }
+  getUser = (keyWord) => {
 
+    return this.get(`Users/getUser?kewword=${keyWord}`);
+  }
+
+  assignUserProject = (userProject) => {
+    return this.post(`Project/assignUserProject`, userProject);
+  }
 
 }
 

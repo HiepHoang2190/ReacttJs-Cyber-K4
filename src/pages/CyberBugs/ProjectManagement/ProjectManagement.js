@@ -3,7 +3,7 @@ import { Table, Tag, Space, Button, Avatar, Popconfirm, message, Popover, AutoCo
 import ReactHtmlParser from "react-html-parser";
 import { FormOutlined, DeleteOutlined } from '@ant-design/icons'
 import { useSelector, useDispatch } from 'react-redux'
-import { DELETE_PROJECT_SAGA, GET_LIST_PROJECT_SAGA, GET_USER_API } from "../../../redux/constants/Cyberbugs/Cyberbugs";
+import { DELETE_PROJECT_SAGA, GET_LIST_PROJECT_SAGA, GET_USER_API,ADD_USER_PROJECT_API } from "../../../redux/constants/Cyberbugs/Cyberbugs";
 import { OPEN_FORM_EDIT_PROJECT, EDIT_PROJECT } from "../../../redux/constants/Cyberbugs/Cyberbugs"
 import FormEditProject from '../../../components/Forms/FormEditProject/FormEditProject';
 
@@ -134,6 +134,8 @@ export default function ProjectManagement(props) {
   //Lấy dữ liệu từ reducer về component
   const projectList = useSelector(state => state.ProjectCyberBugsReducer.projectList);
   const { userSearch } = useSelector(state => state.UserLoginCyberBugsReducer)
+
+  const [value, setValue] = useState('')
   //Sử dụng useDispatch để gọi action
   const dispatch = useDispatch();
   const [state, setState] = useState({
@@ -255,12 +257,26 @@ export default function ProjectManagement(props) {
 
           <Popover placement="rightTop" title={"Add user"} content={() => {
             return <AutoComplete
+              value={value}
               options={userSearch?.map((user, index) => {
-                return { label: user.name, value: user.userId }
+                return { label: user.name, value: user.userId.toString() }
               })}
-              onSelect={(value, option) => {
-                console.log('userId', value);
-                console.log('option', option)
+              onChange={(value) => {
+                setValue(value);
+              }}
+              onSelect={(valueSelect, option) => {
+                // console.log('userId', valueSelect);
+                // console.log('option', option)
+                // set giá trị của hộp thoại = option.label
+                setValue(option.label);
+                //Gọi api gửi về backend
+                dispatch({
+                  type: ADD_USER_PROJECT_API,
+                  userProject: {
+                    "projectId": record.id,
+                    "userId": valueSelect
+                  }
+                })
               }}
               style={{ width: '100%' }} onSearch={(value) => {
                 // console.log('value',value)

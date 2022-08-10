@@ -23,7 +23,8 @@ export function* rootSaga() {
     ProjectSaga.theoDoiGetListProjectSaga(),
     ProjectSaga.theoDoiUpdateProjectSaga(),
     ProjectSaga.theoDoiDeleteProject(),
-    UserCyberbugsSaga.theoDoiGetUser()
+    UserCyberbugsSaga.theoDoiGetUser(),
+    UserCyberbugsSaga.theoDoiAddUserProject()
   ])
 
 
