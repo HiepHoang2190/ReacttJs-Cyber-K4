@@ -26,9 +26,9 @@ export default function IndexCyberBugs(props) {
 
   return (
     <div className="main">
-      <HeaderMain />
-      <InfoMain />
-      <ContentMain />
+      <HeaderMain projectDetail={projectDetail} />
+      <InfoMain projectDetail={projectDetail} />
+      <ContentMain projectDetail={projectDetail}/>
     </div>
   )
 }
