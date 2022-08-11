@@ -3,7 +3,7 @@ import { cyberbugsService } from "../../../services/CyberbugsService";
 import { projectService } from "../../../services/ProjectService"
 import { STATUS_CODE } from "../../../util/constants/settingSystem";
 import { DISPLAY_LOADING, HIDE_LOADING } from "../../constants/LoadingConst";
-import { GET_LIST_PROJECT_SAGA, GET_LIST_PROJECT, UPDATE_PROJECT_SAGA, CLOSE_DRAWER, DELETE_PROJECT_SAGA } from "../../constants/Cyberbugs/Cyberbugs";
+import { GET_LIST_PROJECT_SAGA, GET_LIST_PROJECT, UPDATE_PROJECT_SAGA, CLOSE_DRAWER, DELETE_PROJECT_SAGA,GET_PROJECT_DETAIL,PUT_PROJECT_DETAIL } from "../../constants/Cyberbugs/Cyberbugs";
 import { history } from '../../../util/history';
 import { notifiFunction } from "../../../util/Notification/notificationCyberbugs";
 
@@ -158,4 +158,38 @@ function* deleteProjectSaga(action) {
 
 export function* theoDoiDeleteProject() {
     yield takeLatest(DELETE_PROJECT_SAGA, deleteProjectSaga);
+}
+
+// Get Project Detail
+function* getProjectDetailSaga(action) {
+    // console.log('action123',action);
+    // return;
+    //HIỂN THỊ LOADING
+    yield put({
+        type: DISPLAY_LOADING
+    })
+    yield delay (500);
+
+    try {
+        const { data, status } = yield call(() => projectService.getProjectDetail(action.projectId));
+        
+        console.log('data',data);
+        //Lấy dữ liệu thành công thì đưa dữ liệu lên redux
+        yield put({
+            type:PUT_PROJECT_DETAIL,
+            projectDetail:data.content
+        })
+    
+    } catch (err) {
+        console.log('404 not found !')
+        history.push('/projectmanagement');
+    }
+   
+    yield put({
+        type: HIDE_LOADING
+    })
+}
+
+export function* theoDoiGetProjectDetail() {
+    yield takeLatest(GET_PROJECT_DETAIL, getProjectDetailSaga);
 }

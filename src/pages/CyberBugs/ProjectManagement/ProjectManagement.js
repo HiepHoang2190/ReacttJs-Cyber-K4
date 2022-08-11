@@ -6,7 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { DELETE_PROJECT_SAGA, GET_LIST_PROJECT_SAGA, GET_USER_API, ADD_USER_PROJECT_API, REMOVE_USER_PROJECT_API } from "../../../redux/constants/Cyberbugs/Cyberbugs";
 import { OPEN_FORM_EDIT_PROJECT, EDIT_PROJECT } from "../../../redux/constants/Cyberbugs/Cyberbugs"
 import FormEditProject from '../../../components/Forms/FormEditProject/FormEditProject';
-
+import { NavLink } from 'react-router-dom'
 const data = [
   {
     "id": 1,
@@ -194,6 +194,9 @@ export default function ProjectManagement(props) {
       title: 'projectName',
       dataIndex: 'projectName',
       key: 'projectName',
+      render: (text, record, index) => {
+        return <NavLink to={`/projectdetail/${record.id}`}>{text}</NavLink>
+      },
       sorter: (item2, item1) => {
         let projectName1 = item1.projectName?.trim().toLowerCase();
         let projectName2 = item2.projectName?.trim().toLowerCase();
