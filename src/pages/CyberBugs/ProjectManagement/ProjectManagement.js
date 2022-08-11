@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Table, Tag, Space, Button, Avatar, Popconfirm, message, Popover, AutoComplete } from 'antd';
 import ReactHtmlParser from "react-html-parser";
 import { FormOutlined, DeleteOutlined } from '@ant-design/icons'
@@ -136,6 +136,8 @@ export default function ProjectManagement(props) {
   const { userSearch } = useSelector(state => state.UserLoginCyberBugsReducer)
 
   const [value, setValue] = useState('')
+
+  const searchRef = useRef(null)
   //Sử dụng useDispatch để gọi action
   const dispatch = useDispatch();
   const [state, setState] = useState({
@@ -318,10 +320,15 @@ export default function ProjectManagement(props) {
               }}
               style={{ width: '100%' }} onSearch={(value) => {
                 // console.log('value',value)
-                dispatch({
-                  type: GET_USER_API,
-                  keyWord: value
-                })
+                if (searchRef.current) {
+                  clearTimeout(searchRef.current)
+                }
+                searchRef.current = setTimeout(() => {
+                  dispatch({
+                    type: GET_USER_API,
+                    keyWord: value
+                  })
+                }, 300)
               }} />
           }} trigger="click">
             <Button style={{ borderRadius: '50%' }}>+</Button>
