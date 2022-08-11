@@ -27,7 +27,7 @@ function App() {
       <notifiFunction/>
       {/* <Outlet/> */}
       <Routes >
-        <Route path="/" element={<HomeTemplate homeRoute="home"/>} />
+       
         <Route path='/home' element={<HomeTemplate homeRoute="home" />} />
         <Route path='/contact' element={<HomeTemplate homeRoute="contact" />} />
         <Route path='/about' element={<HomeTemplate homeRoute="about" />} />
@@ -41,7 +41,9 @@ function App() {
         <Route path='/cyberbugs' element={<CyberbugsTemplate cyberRoute="cyberbugs" />} />
         <Route path='/createproject' element={<CyberbugsTemplate cyberRoute="createproject" />} />
         <Route path='/projectmanagement' element={<CyberbugsTemplate cyberRoute="projectmanagement" />} />
-
+        <Route path='/projectdetail/:projectId' element={<CyberbugsTemplate cyberRoute="projectdetail" />} />
+        <Route path='/' element={<CyberbugsTemplate cyberRoute="projectmanagement" />} />
+  
         <Route path='*' element={<HomeTemplate homeRoute="pagenotfound" />} />
       </Routes>
 

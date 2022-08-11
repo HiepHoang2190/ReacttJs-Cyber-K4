@@ -18,6 +18,7 @@ export const CyberbugsTemplate = (props) => {
     {cyberRoute === 'cyberbugs' && <IndexCyberBugs />}
     {cyberRoute === 'createproject' && <CreateProject />}
     {cyberRoute === 'projectmanagement' && <ProjectManagement />}
+    {cyberRoute === 'projectdetail' && <IndexCyberBugs />}
 
   </>
   )

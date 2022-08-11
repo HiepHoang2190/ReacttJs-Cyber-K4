@@ -1,4 +1,4 @@
-import {EDIT_PROJECT} from '../constants/Cyberbugs/Cyberbugs'
+import { EDIT_PROJECT, PUT_PROJECT_DETAIL } from '../constants/Cyberbugs/Cyberbugs'
 const initialState = {
   projectEdit: {
     "id": 0,
@@ -6,16 +6,21 @@ const initialState = {
     "creator": 0,
     "description": "string",
     "categoryId": "2"
-  }
+  },
+  projectDetail: {}
 }
 
-export const ProjectReducer =  (state = initialState,  action) => {
+export const ProjectReducer = (state = initialState, action) => {
   switch (action.type) {
-case EDIT_PROJECT: {
-  state.projectEdit = action.projectEditModel
-  return {...state}
-}
-  default:
+    case EDIT_PROJECT: {
+      state.projectEdit = action.projectEditModel
+      return { ...state }
+    }
+    case PUT_PROJECT_DETAIL: {
+      state.projectDetail = action.projectDetail
+      return {...state}
+    }
+    default:
       return state
   }
 }
